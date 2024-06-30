@@ -57,6 +57,11 @@ class Parser:
         while not self.checkToken(TokenType.EOF):
             self.statement()
 
+        #  check that each label is referenced GOTO declared
+        for label in self.labelsGotoed:
+            if label not in self.labelsGotoed:
+                self.abort("attempt to GOTO to undeclared label:" + label)
+
     #  one of the following statement
 
     def statement(self):
