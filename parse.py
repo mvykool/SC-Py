@@ -129,10 +129,15 @@ class Parser:
 
         #  LET ident expression
         elif self.checkToken(TokenType.LET):
-            print("STATEMENT-LET")
             self.nextToken()
+
+            # check if ident exist in symbol table, if not declare it
+            if self.curToken.text not in self.symbols:
+                self.symbols.add(self.curToken.text)
+
             self.match(TokenType.IDENT)
             self.match(TokenType.EQ)
+
             self.expression()
 
         #  INPUT Indent
