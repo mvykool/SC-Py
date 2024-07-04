@@ -142,8 +142,12 @@ class Parser:
 
         #  INPUT Indent
         elif self.checkToken(TokenType.INPUT):
-            print("STATEMENT-INPUT")
             self.nextToken()
+
+            #  if variable doesnt exist already, declare it
+            if self.curToken.text not in self.symbols:
+                self.symbols.add(self.curToken.text)
+
             self.match(TokenType.IDENT)
 
         #  This is not a valid statement
