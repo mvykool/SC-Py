@@ -225,6 +225,9 @@ class Parser:
         if self.checkToken(TokenType.NUMBER):
             self.nextToken()
         elif self.checkToken(TokenType.IDENT):
+            # ensure the variable already exist
+            if self.curToken.text not in self.symbols:
+                self.abort("variable before assigment: " + self.curToken.text)
             self.nextToken()
         else:
             #  error
