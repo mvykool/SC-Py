@@ -3,3 +3,6 @@ class Emitter:
         self.fullPath = fullpath
         self.header = ""
         self.code = ""
+
+    def emit(self, code):
+        self.code += code
