@@ -6,3 +6,6 @@ class Emitter:
 
     def emit(self, code):
         self.code += code
+
+    def emitLine(self, code):
+        self.code += code + '\n'
