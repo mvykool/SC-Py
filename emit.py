@@ -9,3 +9,6 @@ class Emitter:
 
     def emitLine(self, code):
         self.code += code + '\n'
+
+    def headerLine(self, code):
+        self.header += code + '\n'
