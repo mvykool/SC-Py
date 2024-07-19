@@ -6,8 +6,9 @@ from lex import *
 
 
 class Parser:
-    def __init__(self, lexer):
+    def __init__(self, lexer, emitter):
         self.lexer = lexer
+        self.emitter = emitter
 
         self.symbols = set()
         self.labelsDeclared = set()
