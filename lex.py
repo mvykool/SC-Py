@@ -11,10 +11,18 @@ class Lexer:
 
     # Process the next character
     def nextChar(self):
+        self.curPos += 1
+        if self.curPos >= len(self.source):
+            self.curChar = '\0'
+        else:
+            self.curChar = self.source[self.curPos]
         pass
 
     # Return the lookhead of the character
     def peek(self):
+        if self.curPos + 1 >= len(self.source):
+            return '\0'
+        return self.source[self.curPos+1]
         pass
 
     # Invalid token found, print error message and exit
