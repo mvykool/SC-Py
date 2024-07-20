@@ -1,5 +1,12 @@
 class Lexer:
     def __init__(self, source):
+        self.source = source + '\n'
+        # source code to lex as a string. Append a new line to simplify lexing
+        self.curChar = ''
+        # current character in the string
+        self.curPos = -1
+        # current position in the string
+        self.nextChar()
         pass
 
     # Process the next character
