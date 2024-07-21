@@ -96,20 +96,22 @@ class Lexer:
                 token = Token(lastChar + self.curChar, TokenType.NOTEQ)
             else:
                 self.abort("Expected !=, got !" + self.peek())
-        elif self.curChar == '/"':
+
+        elif self.curChar == '\"':
             #  get characters between quotations
             self.nextChar()
             startPos = self.curPos
 
-            while self.curChar != '/"':
+            while self.curChar != '\"':
                 #  no allow special characters in strings
                 #  no scape characters, newlines, tabs
                 #  we'll be using C printf on this string
-                if self.curChar == '\n' or self.curChar == '\r' or self.curChar == '\t' or self.curChar == '\\' or self.curChar == '%':
+                if self.curChar == '\r' or self.curChar == '\n' or self.curChar == '\t' or self.curChar == '\\' or self.curChar == '%':
                     self.abort("Illegal characters in string")
+                self.nextChar()
 
-                tokText = self.source[startPos: self.curPos]  # get substring
-                token = Token(tokText, TokenType.STRING)
+            tokText = self.source[startPos: self.curPos]  # get substring
+            token = Token(tokText, TokenType.STRING)
 
         elif self.curChar == '\n':
             token = Token(self.curChar, TokenType.NEWLINE)
