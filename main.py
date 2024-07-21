@@ -2,7 +2,7 @@ from lex import *
 
 
 def main():
-    source = "+-123 9.8654*/"
+    source = "IF+-123 foo*THEN/"
     lexer = Lexer(source)
 
     token = lexer.getToken()
