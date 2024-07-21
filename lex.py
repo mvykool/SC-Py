@@ -37,11 +37,15 @@ class Lexer:
 
     # Ignore comments in code
     def comments(self):
-        pass
+        if self.curChar == '~':
+            while self.curChar != '\n':
+                self.nextChar()
 
     # Return next token
+
     def getToken(self):
         self.skipWhitespace()
+        self.comments()
         token = None
 
         # Check the first character of this token to see
