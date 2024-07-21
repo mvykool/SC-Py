@@ -73,9 +73,9 @@ class Lexer:
 
 class Token:
     def __init__(self, tokenText, tokenKind):
-        self.text == tokenText
+        self.text = tokenText
         #  text used for identifiers, strings and numbers
-        self.kind == tokenKind
+        self.kind = tokenKind
         #  type the token is classified as
 
 #  TokenType is our enum for all our types of tokens
