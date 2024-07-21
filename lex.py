@@ -1,4 +1,5 @@
 import enum
+import sys
 
 
 class Lexer:
@@ -10,7 +11,6 @@ class Lexer:
         self.curPos = -1
         # current position in the string
         self.nextChar()
-        pass
 
     # Process the next character
     def nextChar(self):
@@ -19,18 +19,16 @@ class Lexer:
             self.curChar = '\0'
         else:
             self.curChar = self.source[self.curPos]
-        pass
 
     # Return the lookhead of the character
     def peek(self):
         if self.curPos + 1 >= len(self.source):
             return '\0'
         return self.source[self.curPos+1]
-        pass
 
     # Invalid token found, print error message and exit
     def abort(self, message):
-        pass
+        sys.exit("Lexing error " + message)
 
     # Skip whitespace except new lines, this marks end of statement
     def skipWhitespace(self):
@@ -63,7 +61,7 @@ class Lexer:
             token = Token(self.curChar, TokenType.EOF)
         else:
             # unknown token
-            pass
+            self.abort("Unknown token: " + self.curChar)
 
         self.nextChar()
         return token
