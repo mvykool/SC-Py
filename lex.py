@@ -67,15 +67,6 @@ class Lexer:
             else:
                 token = Token(self.curChar, TokenType.EQ)
 
-        elif self.curChar == '<':
-            #  check if this is only < or  <=
-            if self.peek() == '=':
-                lastChar = self.curChar
-                self.nextChar()
-                token = Token(lastChar + self.curChar, TokenType.LTEQ)
-            else:
-                token = Token(self.curChar, TokenType.LT)
-
         elif self.curChar == '>':
             #  check if this is only > or  >=
             if self.peek() == '=':
@@ -84,6 +75,15 @@ class Lexer:
                 token = Token(lastChar + self.curChar, TokenType.GTEQ)
             else:
                 token = Token(self.curChar, TokenType.GT)
+
+        elif self.curChar == '<':
+            #  check if this is only < or  <=
+            if self.peek() == '=':
+                lastChar = self.curChar
+                self.nextChar()
+                token = Token(lastChar + self.curChar, TokenType.LTEQ)
+            else:
+                token = Token(self.curChar, TokenType.LT)
 
         elif self.curChar == '!':
             if self.peek() == '=':
@@ -145,5 +145,5 @@ class TokenType(enum.Enum):
     NOTEQ = 207
     LT = 208
     LTEQ = 209
-    GT = 110
-    GTEQ = 111
+    GT = 210
+    GTEQ = 211
