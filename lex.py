@@ -32,7 +32,8 @@ class Lexer:
 
     # Skip whitespace except new lines, this marks end of statement
     def skipWhitespace(self):
-        pass
+        while self.curChar == ' ' or self.curChar == '\t' or self.curChar == '\r':
+            self.nextChar()
 
     # Ignore comments in code
     def comments(self):
@@ -40,6 +41,7 @@ class Lexer:
 
     # Return next token
     def getToken(self):
+        self.skipWhitespace()
         token = None
 
         # Check the first character of this token to see
