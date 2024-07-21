@@ -62,3 +62,13 @@ class Lexer:
 
         self.nextChar()
         pass
+
+# Token contains original text and kind of tokensh
+
+
+class Token:
+    def __init__(self, tokenText, tokenKind):
+        self.text == tokenText
+        #  text used for identifiers, strings and numbers
+        self.kind == tokenKind
+        #  type the token is classified as
