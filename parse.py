@@ -11,11 +11,11 @@ class Parser:
 
     #  return token if current token matches
     def checkToken(self, kind):
-        pass
+        return kind == self.curToken.kind
 
     #  return token if next token matches
     def checkPeek(self, kind):
-        pass
+        return kind == self.peekToken.kind
 
     # Try to match current token. If not, error.
     # Advances the current token.
