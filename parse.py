@@ -37,3 +37,15 @@ class Parser:
 
     def abort(self, message):
         sys.exit("error" + message)
+
+#  Production rules
+
+#  program :: ={statement}
+
+
+def program(self):
+    print("PROGRAM")
+
+    #  parse all the statements in the program
+    while not self.checkToken(TokenType.EOF):
+        self.statement()
