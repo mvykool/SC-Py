@@ -7,7 +7,12 @@ from lex import *
 
 class Parser:
     def __init__(self, lexer):
-        pass
+        self.lexer = lexer
+
+        self.curToken = None
+        self.peekToken = None
+        self.nextToken()
+        self.nextToken()  # call twice to initialize current and peek
 
     #  return token if current token matches
     def checkToken(self, kind):
@@ -20,11 +25,15 @@ class Parser:
     # Try to match current token. If not, error.
     # Advances the current token.
     def match(self, kind):
-        pass
+        if not self.checkToken(kind):
+            self.abort("expected" + kind.name +
+                       "got" + self.curToken.kind.name)
+            self.nextToken()
 
     # advance current token
     def nextToken(self):
-        pass
+        self.curToken = self.peekToken
+        self.peekToken = self.lexer.getToken()
 
     def abort(self, message):
         sys.exit("error" + message)
