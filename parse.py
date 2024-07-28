@@ -36,18 +36,15 @@ class Parser:
         self.peekToken = self.lexer.getToken()
 
     def abort(self, message):
-        ss.xit("error" + message)
+        sys.exit("error" + message)
 
-    def statement(self):
+    #  Production rules
 
-        #  Production rules
+    #  program :: ={statement}
 
-        #  program :: ={statement}
+    def program(self):
+        print("PROGRAM")
 
-
-def program(self):
-    print("PROGRAM")
-
-    #  parse all the statements in the program
-    while not self.checkToken(TokenType.EOF):
-        self.statement()
+        #  parse all the statements in the program
+        while not self.checkToken(TokenType.EOF):
+            self.statement()
