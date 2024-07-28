@@ -107,6 +107,12 @@ class Parser:
         elif self.checkToken(TokenType.LABEL):
             print("STATEMENT-LABEL")
             self.nextToken()
+
+            #  make sure this label doesnt exist
+            if self.curToken.text in self.labelsDeclared:
+                self.abort("label already exist:" + self.curToken.text)
+            self.labelsDeclared.add(self.curToken.text)
+
             self.match(TokenType.IDENT)
 
         #  GOTO ident
