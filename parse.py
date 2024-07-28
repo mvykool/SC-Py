@@ -9,6 +9,10 @@ class Parser:
     def __init__(self, lexer):
         self.lexer = lexer
 
+        self.symbols = set()
+        self.labelsDeclared = set()
+        self.labelsGotoed = set()
+
         self.curToken = None
         self.peekToken = None
         self.nextToken()
