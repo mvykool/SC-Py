@@ -74,15 +74,18 @@ class Parser:
         #  check the first toekn to see what kind of statement it isinstance
         #  print (expression | string)
         if self.checkToken(TokenType.PRINT):
-            print("STATEMENT-PRINT")
             self.nextToken()
 
             if self.checkToken(TokenType.STRING):
                 #  simple string
+                self.emitter.emitLine(
+                    "printf(\"" + self.curToken.text + "\\n\");")
                 self.nextToken()
             else:
                 #  expect an expression
+                self.emitter.emit("printf(\"%" + ".2f\\n\", (float) (")
                 self.expression()
+                self.emitter.emitLine("));")
 
         # if statement comparison
         elif self.checkToken(TokenType.IF):
