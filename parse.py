@@ -4,7 +4,6 @@ from lex import *
 # Parser object keeps track of current token
 # and checks if the code matches the grammar
 
-
 class Parser:
     def __init__(self, lexer, emitter):
         self.lexer = lexer

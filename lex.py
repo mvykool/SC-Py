@@ -1,7 +1,6 @@
 import enum
 import sys
 
-
 class Lexer:
     def __init__(self, source):
         self.source = source + '\n'
@@ -37,7 +36,7 @@ class Lexer:
 
     # Ignore comments in code
     def comments(self):
-        if self.curChar == '~':
+        if self.curChar == '#':
             while self.curChar != '\n':
                 self.nextChar()
 
