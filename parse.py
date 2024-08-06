@@ -28,7 +28,7 @@ class Parser:
         if not self.checkToken(kind):
             self.abort("expected" + kind.name +
                        "got" + self.curToken.kind.name)
-            self.nextToken()
+        self.nextToken()
 
     # advance current token
     def nextToken(self):
@@ -129,15 +129,12 @@ class Parser:
         self.nl()
 
     #  nl ::='\n'+
-
     def nl(self):
         print("NEWLINE")
 
         #  require at least one NEWLINE
-
         self.match(TokenType.NEWLINE)
 
         #  but we will allow extra
-
         while self.checkToken(TokenType.NEWLINE):
             self.nextToken()
