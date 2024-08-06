@@ -50,3 +50,20 @@ class Parser:
             self.statement()
 
     #  one of the following statement
+
+    def statement(self):
+        #  check the first toekn to see what kind of statement it isinstance
+        #  print (expression | string)
+        if self.checkToken(TokenType.PRINT):
+            print("STATEMENT-PRINT")
+            self.nextToken()
+
+            if self.checkToken(TokenType.STRING):
+                #  simple string
+                self.nextToken()
+            else:
+                #  expect an expression
+                self.expression()
+
+        #  new line
+        self.nl()
