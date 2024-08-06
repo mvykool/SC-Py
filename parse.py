@@ -45,6 +45,10 @@ class Parser:
     def program(self):
         print("PROGRAM")
 
+        #  newlines are required in our grammar
+        while self.checkToken(TokenType.NEWLINE):
+            self.nextToken()
+
         #  parse all the statements in the program
         while not self.checkToken(TokenType.EOF):
             self.statement()
