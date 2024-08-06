@@ -67,3 +67,17 @@ class Parser:
 
         #  new line
         self.nl()
+
+    #  nl ::='\n'+
+
+    def nl(self):
+        print("NEWLINE")
+
+        #  require at least one NEWLINE
+
+        self.match(TokenType.NEWLINE)
+
+        #  but we will allow extra
+
+        while self.checkToken(TokenType.NEWLINE):
+            self.nextToken()
