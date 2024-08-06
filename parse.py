@@ -65,6 +65,21 @@ class Parser:
                 #  expect an expression
                 self.expression()
 
+        # if statement comparison
+        elif self.checkToken(TokenType.IF):
+            print("STATEMENT-IF")
+            self.nextToken()
+            self.comparison()
+
+            self.match(TokenType.THEN)
+            self.nl()
+
+            # zero or more statements
+            while not self.checkToken(TokenType.ENDIF):
+                self.statement()
+
+            self.match(TokenType.ENDIF)
+
         #  new line
         self.nl()
 
