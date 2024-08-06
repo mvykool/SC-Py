@@ -95,6 +95,36 @@ class Parser:
 
             self.match(TokenType.ENDWHILE)
 
+        #  LABEL ident
+        elif self.checkToken(TokenType.LABEL):
+            print("STATEMENT-LABEL")
+            self.nextToken()
+            self.match(TokenType.IDENT)
+
+        #  GOTO ident
+        elif self.checkToken(TokenType.GOTO):
+            print("STATEMENT-GOTO")
+            self.nextToken()
+            self.match(TokenType.IDENT)
+
+        #  LET ident expression
+        elif self.checkToken(TokenType.LET):
+            print("STATEMENT-LET")
+            self.nextToken()
+            self.match(TokenType.IDENT)
+            self.match(TokenType.EQ)
+            self.expression()
+
+        #  INPUT Indent
+        elif self.checkToken(TokenType.INPUT):
+            print("STATEMENT-INPUT")
+            self.nextToken()
+            self.match(TokenType.IDENT)
+
+        #  This is not a valid statement
+        else:
+            self.abort("Invalid statement" + self.curToken.text +
+                       "(" + self.curToken.kind.name + ")")
         #  new line
         self.nl()
 
