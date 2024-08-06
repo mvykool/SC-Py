@@ -48,3 +48,5 @@ class Parser:
         #  parse all the statements in the program
         while not self.checkToken(TokenType.EOF):
             self.statement()
+
+    #  one of the following statement
