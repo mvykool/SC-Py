@@ -1,0 +1,19 @@
+# compute average of given values
+
+LET a = 0
+WHILE a < 1 REPEAT
+    PRINT "enter number of scores: "
+    INPUT a
+ENDWHILE
+
+LET b = 0
+LET s = 0
+PRINT "enter one value at a time: "
+WHILE b < a REPEAT
+    INPUT c
+    LET s = s + c
+    LET b = b + 1
+ENDWHILE
+
+PRINT "average: "
+PRINT s / a
