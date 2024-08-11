@@ -142,3 +142,22 @@ class Parser:
         #  but we will allow extra
         while self.checkToken(TokenType.NEWLINE):
             self.nextToken()
+
+    #  comparison expressions
+    def comparison(self):
+        print("COMPARISON")
+
+        self.expression()
+        #  must be at least one com and another exp
+        if self.isComparisonOperator():
+            self.nextToken()
+            self.expression()
+        else:
+            self.abort("expected comparison at:" + self.curToken.text)
+
+        #  can have 0 or more comparison and expression
+        while self.isComparisonOperator():
+            self.nextToken()
+            self.expression()
+
+    #  return true if the current token is comparison
