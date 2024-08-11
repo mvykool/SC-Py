@@ -239,14 +239,15 @@ class Parser:
 
     #  primary number ident
     def primary(self):
-        print("PRIMARY (" + self.curToken.text + ")")
-
         if self.checkToken(TokenType.NUMBER):
+            self.emitter.emit(self.curToken.text)
             self.nextToken()
         elif self.checkToken(TokenType.IDENT):
             # ensure the variable already exist
             if self.curToken.text not in self.symbols:
                 self.abort("variable before assigment: " + self.curToken.text)
+
+            self.emitter.emit(self.curToken.text)
             self.nextToken()
         else:
             #  error
