@@ -163,3 +163,32 @@ class Parser:
     #  return true if the current token is comparison
     def isComparisonOperator(self):
         return self.checkToken(TokenType.GT) or self.checkToken(TokenType.GTEQ) or self.checkToken(TokenType.LT) or self.checkToken(TokenType.LTEQ) or self.checkToken(TokenType.EQEQ) or self.checkToken(TokenType.NOTEQ)
+
+    #  expressions term + -
+    def expression(self):
+        print("EXPRESSION")
+
+        self.term()
+        #  can have 0 or more +/- expressions
+        while self.checkToken(TokenType.PLUS) or self.checkToken(TokenType.MINUS):
+            self.nextToken()
+            self.term()
+
+    #  term unary / *
+    def term(self):
+        print("TERM")
+
+        self.unary()
+        # can have 0 or more * / expressions
+        while self.checkToken(TokenType.ASTERISK) or self.checkToken(TokenType.SLASH):
+            self.nextToken()
+            self.unary()
+
+    #  unary + - primary
+    def unary(self):
+        print("UNARY")
+
+        #  optional unary + -
+        if self.checkToken(TokenType.PLUS) or self.checkToken(TokenType.MINUS):
+            self.nextToken()
+        self.primary()
