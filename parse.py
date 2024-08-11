@@ -184,8 +184,6 @@ class Parser:
 
     #  nl ::='\n'+
     def nl(self):
-        print("NEWLINE")
-
         #  require at least one NEWLINE
         self.match(TokenType.NEWLINE)
 
