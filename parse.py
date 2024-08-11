@@ -195,18 +195,15 @@ class Parser:
 
     #  comparison expressions
     def comparison(self):
-        print("COMPARISON")
-
         self.expression()
         #  must be at least one com and another exp
         if self.isComparisonOperator():
+            self.emitter.emit(self.curToken.text)
             self.nextToken()
             self.expression()
-        else:
-            self.abort("expected comparison at:" + self.curToken.text)
-
         #  can have 0 or more comparison and expression
         while self.isComparisonOperator():
+            self.emitter.emit(self.curToken.text)
             self.nextToken()
             self.expression()
 
@@ -216,30 +213,27 @@ class Parser:
 
     #  expressions term + -
     def expression(self):
-        print("EXPRESSION")
-
         self.term()
         #  can have 0 or more +/- expressions
         while self.checkToken(TokenType.PLUS) or self.checkToken(TokenType.MINUS):
+            self.emitter.emit(self.curToken.text)
             self.nextToken()
             self.term()
 
     #  term unary / *
     def term(self):
-        print("TERM")
-
         self.unary()
         # can have 0 or more * / expressions
         while self.checkToken(TokenType.ASTERISK) or self.checkToken(TokenType.SLASH):
+            self.emitter.emit(self.curToken.text)
             self.nextToken()
             self.unary()
 
     #  unary + - primary
     def unary(self):
-        print("UNARY")
-
         #  optional unary + -
         if self.checkToken(TokenType.PLUS) or self.checkToken(TokenType.MINUS):
+            self.emitter.emit(self.curToken.text)
             self.nextToken()
         self.primary()
 
