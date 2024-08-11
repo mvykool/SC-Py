@@ -192,3 +192,15 @@ class Parser:
         if self.checkToken(TokenType.PLUS) or self.checkToken(TokenType.MINUS):
             self.nextToken()
         self.primary()
+
+    #  primary number ident
+    def primary(self):
+        print("PRIMARY (" + self.curToken.text + ")")
+
+        if self.checkToken(TokenType.NUMBER):
+            self.nextToken()
+        elif self.checkToken(TokenType.IDENT):
+            self.nextToken()
+        else:
+            #  error
+            self.abort("unexpected token at" + self.curToken.text)
